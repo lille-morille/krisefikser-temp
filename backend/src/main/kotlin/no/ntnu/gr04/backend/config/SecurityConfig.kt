@@ -16,7 +16,10 @@ class SecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests { auth ->
                 auth
-                    .requestMatchers("/public/**").permitAll()
+                    .requestMatchers(
+                        "/public/**",
+                        "/swagger-ui/*"
+                    ).permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(
