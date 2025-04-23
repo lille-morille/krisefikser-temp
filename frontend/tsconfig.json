@@ -15,7 +15,7 @@
     "module": "NodeNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   }
 }
