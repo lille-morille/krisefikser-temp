@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 private const val AUTH_HEADER: String = "Authorization"
-private const val MISSING_TOKEN: String = "Missing token"
 private const val BEARER: String = "Bearer "
 
 @Component
@@ -24,8 +23,7 @@ class JWTFilter(
         val bearerToken = request.getHeader(AUTH_HEADER)
 
         if (bearerToken == null) {
-            response.status = HttpServletResponse.SC_UNAUTHORIZED
-            response.writer.write(MISSING_TOKEN)
+            filterChain.doFilter(request, response)
             return
         }
 

@@ -1,5 +1,6 @@
 package no.ntnu.gr04.backend.config.jwt
 
+import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -14,8 +15,13 @@ class JWTSigning {
         .setSigningKey(key)
         .build() !!
 
-    fun validate(token: String): JWTAuthentication {
-        val claims = parser.parseClaimsJws(token)!!.body !!
+    fun validate(token: String): JWTAuthentication? {
+        val claims = try {
+            parser.parseClaimsJws(token)!!.body !!
+        } catch (e: JwtException) {
+            return null
+        }
+
         return JWTAuthentication(claims.subject !!)
     }
 }
