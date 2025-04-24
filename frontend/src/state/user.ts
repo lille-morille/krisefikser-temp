@@ -18,5 +18,5 @@ export const useUserStore = defineStore('user', () => {
     email.value = newEmail
   }
 
-  return [firstName, lastName, email, setFirstName, setLastName, setEmail]
+  return { firstName, lastName, email, setFirstName, setLastName, setEmail }
 })
