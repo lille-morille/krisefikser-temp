@@ -67,7 +67,12 @@ const onSubmit = form.handleSubmit((values) => {
           </Form>
         </div>
         <div class="flex flex-col justify-center items-center">
-          <div>Har du ikke en konto? <Button variant="link">Registrer deg</Button></div>
+          <div>
+            Har du ikke en konto?
+            <RouterLink class="hover:underline font-medium ml-3" :to="{ name: 'sign-up' }"
+              >Registrer deg</RouterLink
+            >
+          </div>
         </div>
       </div>
     </div>
