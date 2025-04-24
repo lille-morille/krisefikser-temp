@@ -49,6 +49,11 @@ const onSubmit = form.handleSubmit((values) => {
           <h1 class="text-4xl">Velkommen tilbake til <span class="font-bold">KriseFikser</span></h1>
         </div>
 
+        <div class="flex flex-col gap-2 mb-[-0.8rem]">
+          <div class="text-3xl font-semibold text-foreground">Registrer deg</div>
+          <div class="text-lg text-muted-foreground">Fyll ut profilen din for å komme i gang!</div>
+        </div>
+
         <div class="flex flex-col justify-center">
           <Form @submit="onSubmit" class="flex flex-col gap-8">
             <div class="flex flex-row gap-3">
@@ -98,7 +103,7 @@ const onSubmit = form.handleSubmit((values) => {
                 <FormMessage class="max-h-0" />
               </FormItem>
             </FormField>
-            <Button type="submit"> Submit </Button>
+            <Button type="submit"> Registrer konto </Button>
           </Form>
         </div>
         <div class="flex flex-col justify-center items-center">

@@ -36,9 +36,19 @@ const onSubmit = form.handleSubmit((values) => {
   <main class="flex flex-row">
     <div class="w-full flex items-center justify-center">
       <div class="flex flex-col justify-center w-sm h-[100svh] gap-16">
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex items-center justify-between gap-8">
           <img src="/images/logo.png" alt="Logo" class="w-20" />
-          <h1 class="text-4xl">Velkommen tilbake til <span class="font-bold">KriseFikser</span></h1>
+          <h1 class="text-4xl">
+            <span class="font-semibold">Velkommen til</span>
+            <span class="font-extrabold"> KriseFikser</span>
+          </h1>
+        </div>
+
+        <div class="flex flex-col gap-2 mb-[-0.8rem]">
+          <div class="text-3xl font-semibold text-foreground">Logg inn</div>
+          <div class="text-lg text-muted-foreground">
+            Skriv inn e-posten din under for å logge inn på din konto.
+          </div>
         </div>
 
         <div class="flex flex-col justify-center">
@@ -71,7 +81,7 @@ const onSubmit = form.handleSubmit((values) => {
                 >Glemt passord?</RouterLink
               >
             </div>
-            <Button type="submit"> Submit </Button>
+            <Button type="submit"> Logg inn </Button>
           </Form>
         </div>
         <div class="flex flex-col justify-center items-center">

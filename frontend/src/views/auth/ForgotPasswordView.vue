@@ -41,7 +41,7 @@ const onSubmit = form.handleSubmit((values) => {
           </h1>
         </div>
 
-        <div class="flex flex-col gap-2 mb-[-2rem]">
+        <div class="flex flex-col gap-2 mb-[-0.8rem]">
           <div class="text-3xl font-semibold text-foreground">Tilbakestill passord</div>
           <div class="text-lg text-muted-foreground">
             Vi sender deg en e-post med instruksjoner.
