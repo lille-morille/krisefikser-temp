@@ -11,8 +11,18 @@ data class User(
     val positionSharing: Boolean = false,
     val dateOfBirth: Date? = null,
     ) {
-    enum class Role {
-        ADMIN,
-        USER,
+    enum class Role (private val value: String) {
+        ADMIN("admin"),
+        USER("user"),;
+
+        override fun toString(): String {
+            return value
+        }
+
+        companion object {
+            fun from(string: String): Role {
+                return Role.entries.find { it.value == string } ?: throw IllegalArgumentException("Unknown role.")
+            }
+        }
     }
 }

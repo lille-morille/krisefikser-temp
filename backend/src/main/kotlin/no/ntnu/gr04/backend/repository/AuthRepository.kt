@@ -35,12 +35,17 @@ class AuthRepository(private val jdbc: JdbcTemplate) {
 
     fun register(user: User, passwordHash: String): Boolean {
         val sql = """
-            INSERT INTO users (id, email, firstName, lastName, role, positionSharing,
-            dateOfBirth, passwordHash) VALUES (?,?,?,?,?,?,?,?)
+            INSERT INTO users (id, email, first_name, last_name, role, position_sharing,
+            date_of_birth, password_hash) VALUES (?,?,?,?,?::role,?,?,?)
         """
+        val date = if (user.dateOfBirth != null) {
+            java.sql.Date.valueOf(user.dateOfBirth.toString())
+        } else {
+            null
+        }
         return jdbc.update(
-            sql, user.id, user.email, user.firstName, user.lastName, user.role, user.positionSharing,
-            user.dateOfBirth, passwordHash
+            sql, user.id, user.email, user.firstName, user.lastName, user.role.toString(), user.positionSharing,
+            date, passwordHash
         ) != 0
     }
 }

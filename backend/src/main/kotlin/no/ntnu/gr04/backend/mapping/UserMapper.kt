@@ -10,7 +10,7 @@ fun toUser(userEntity: UserEntity): User {
         email = userEntity.email,
         firstName = userEntity.firstName,
         lastName = userEntity.lastName,
-        role = User.Role.valueOf(userEntity.role),
+        role = User.Role.from(userEntity.role),
         positionSharing = userEntity.positionSharing,
         dateOfBirth = userEntity.dateOfBirth,
     )
