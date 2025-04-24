@@ -33,11 +33,14 @@ class AuthRepository(private val jdbc: JdbcTemplate) {
         }
     }
 
-    fun register(user: User): UserEntity {
-        TODO()
-    }
-
-    fun login(email: String, password: String): UserEntity? {
-        TODO()
+    fun register(user: User, passwordHash: String): Boolean {
+        val sql = """
+            INSERT INTO users (id, email, firstName, lastName, role, positionSharing,
+            dateOfBirth, passwordHash) VALUES (?,?,?,?,?,?,?,?)
+        """
+        return jdbc.update(
+            sql, user.id, user.email, user.firstName, user.lastName, user.role, user.positionSharing,
+            user.dateOfBirth, passwordHash
+        ) != 0
     }
 }
