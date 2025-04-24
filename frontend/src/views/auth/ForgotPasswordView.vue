@@ -6,6 +6,10 @@ import { useForm } from 'vee-validate'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const email: string = (route.query.email as string) || ''
 
 const formSchema = toTypedSchema(
   z.object({
@@ -14,6 +18,9 @@ const formSchema = toTypedSchema(
 )
 
 const form = useForm({
+  initialValues: {
+    email: email,
+  },
   validationSchema: formSchema,
 })
 

@@ -62,7 +62,12 @@ const onSubmit = form.handleSubmit((values) => {
                   <FormMessage />
                 </FormItem>
               </FormField>
-              <RouterLink class="hover:underline" :to="{ name: 'forgot-password' }"
+              <RouterLink
+                class="hover:underline"
+                :to="{
+                  name: 'forgot-password',
+                  query: { email: form.values.email },
+                }"
                 >Glemt passord?</RouterLink
               >
             </div>
