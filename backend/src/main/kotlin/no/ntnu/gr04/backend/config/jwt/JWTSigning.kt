@@ -6,6 +6,8 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
+import java.util.UUID
+import java.util.Date
 import javax.crypto.SecretKey
 
 @Component
@@ -24,4 +26,14 @@ class JWTSigning {
 
         return JWTAuthentication(claims.subject !!)
     }
+
+    fun generateToken(userId: UUID): String {
+        return Jwts.builder()
+            .setSubject(userId.toString())
+            .setIssuedAt(Date())
+            .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60))
+            .signWith(key)
+            .compact()
+    }
+
 }
