@@ -6,20 +6,10 @@ import { useForm } from 'vee-validate'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { RouterLink } from 'vue-router'
 
 const formSchema = toTypedSchema(
   z.object({
     email: z.string().email({ message: 'Ugyldig e-postadresse' }),
-    password: z
-      .string()
-      .min(8, { message: 'Passordet må være minst 8 tegn' })
-      .regex(/\d.*/, { message: 'Passordet må inneholde minst ett tall' })
-      .regex(/[!"#$%&/()=?*^¨\.;:\_\-].*/, {
-        message: 'Passordet må inneholde minst ett spesialtegn',
-      })
-      .regex(/[a-zæøå].*/, { message: 'Passordet må inneholde minst én liten bokstav' })
-      .regex(/[A-ZÆØÅ].*/, { message: 'Passordet må inneholde minst én stor bokstav' }),
   }),
 )
 
@@ -36,9 +26,19 @@ const onSubmit = form.handleSubmit((values) => {
   <main class="flex flex-row">
     <div class="w-full flex items-center justify-center">
       <div class="flex flex-col justify-center w-sm h-[100svh] gap-16">
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex items-center justify-between gap-8">
           <img src="/images/logo.png" alt="Logo" class="w-20" />
-          <h1 class="text-4xl">Velkommen tilbake til <span class="font-bold">KriseFikser</span></h1>
+          <h1 class="text-4xl">
+            <span class="font-semibold">Velkommen til</span>
+            <span class="font-extrabold"> KriseFikser</span>
+          </h1>
+        </div>
+
+        <div class="flex flex-col gap-2 mb-[-2rem]">
+          <div class="text-3xl font-semibold text-foreground">Tilbakestill passord</div>
+          <div class="text-lg text-muted-foreground">
+            Vi sender deg en e-post med instruksjoner.
+          </div>
         </div>
 
         <div class="flex flex-col justify-center">
@@ -52,30 +52,13 @@ const onSubmit = form.handleSubmit((values) => {
                 <FormMessage />
               </FormItem>
             </FormField>
-            <div class="flex flex-col items-end">
-              <FormField v-slot="{ componentField }" name="password" class="w-full">
-                <FormItem class="w-full">
-                  <FormLabel>Passord</FormLabel>
-                  <FormControl>
-                    <Input type="password" v-bind="componentField" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              </FormField>
-              <RouterLink class="hover:underline" :to="{ name: 'forgot-password' }"
-                >Glemt passord?</RouterLink
-              >
-            </div>
-            <Button type="submit"> Submit </Button>
+            <Button type="submit"> Send meg en e-post </Button>
           </Form>
         </div>
         <div class="flex flex-col justify-center items-center">
-          <div>
-            Har du ikke en konto?
-            <RouterLink class="hover:underline font-medium ml-3" :to="{ name: 'sign-up' }"
-              >Registrer deg</RouterLink
-            >
-          </div>
+          <RouterLink class="hover:underline font-medium ml-3" :to="{ name: 'sign-in' }"
+            >Tilbake til innlogging</RouterLink
+          >
         </div>
       </div>
     </div>
