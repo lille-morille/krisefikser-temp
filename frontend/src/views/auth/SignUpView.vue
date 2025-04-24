@@ -22,21 +22,12 @@ const formSchema = toTypedSchema(
       })
       .regex(/[a-zæøå].*/, { message: 'Passordet må inneholde minst én liten bokstav' })
       .regex(/[A-ZÆØÅ].*/, { message: 'Passordet må inneholde minst én stor bokstav' }),
-    confirmPassword: z
-      .string()
-      .min(8, { message: 'Passordet må være minst 8 tegn' })
-      .regex(/\d.*/, { message: 'Passordet må inneholde minst ett tall' })
-      .regex(/[!"#$%&/()=?*^¨\.;:\_\-].*/, {
-        message: 'Passordet må inneholde minst ett spesialtegn',
-      })
-      .regex(/[a-zæøå].*/, { message: 'Passordet må inneholde minst én liten bokstav' })
-      .regex(/[A-ZÆØÅ].*/, { message: 'Passordet må inneholde minst én stor bokstav' })
-      .refine(
-        (): boolean => {
-          return form.values.password === form.values.confirmPassword
-        },
-        { message: 'Passordene må være like' },
-      ),
+    confirmPassword: z.string().refine(
+      (): boolean => {
+        return form.values.password === form.values.confirmPassword
+      },
+      { message: 'Passordene må være like' },
+    ),
   }),
 )
 
