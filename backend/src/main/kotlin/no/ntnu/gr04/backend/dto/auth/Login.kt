@@ -1,7 +1,7 @@
 package no.ntnu.gr04.backend.dto.auth
 
 data class AuthLoginRequest(
-    val phone: String,
+    val email: String,
 
     val password: String,
 )

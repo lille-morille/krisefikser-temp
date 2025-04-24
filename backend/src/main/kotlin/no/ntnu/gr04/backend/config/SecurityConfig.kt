@@ -18,8 +18,10 @@ class SecurityConfig {
                 auth
                     .requestMatchers(
                         "/api/public/**",
-                        "/swagger-ui/*",
-                        "/v3/api-docs/**"
+                        "/v3/api-docs/**",
+                        "/api/auth/login",
+                        "/api/auth/register",
+                        "/swagger-ui/*"
                     ).permitAll()
                     .anyRequest().authenticated()
             }
