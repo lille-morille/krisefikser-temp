@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod';
+import * as z from 'zod';
+import { useForm } from 'vee-validate';
 
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { RouterLink } from 'vue-router'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { RouterLink } from 'vue-router';
 
 const formSchema = toTypedSchema(
   z.object({
@@ -24,20 +24,20 @@ const formSchema = toTypedSchema(
       .regex(/[A-ZÆØÅ].*/, { message: 'Passordet må inneholde minst én stor bokstav' }),
     confirmPassword: z.string().refine(
       (): boolean => {
-        return form.values.password === form.values.confirmPassword
+        return form.values.password === form.values.confirmPassword;
       },
       { message: 'Passordene må være like' },
     ),
   }),
-)
+);
 
 const form = useForm({
   validationSchema: formSchema,
-})
+});
 
 const onSubmit = form.handleSubmit((values) => {
-  console.log('Form submitted!', values)
-})
+  console.log('Form submitted!', values);
+});
 </script>
 
 <template>
