@@ -6,6 +6,7 @@ import { useForm } from 'vee-validate'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { RouterLink } from 'vue-router'
 
 const formSchema = toTypedSchema(
   z.object({
@@ -61,7 +62,14 @@ const onSubmit = form.handleSubmit((values) => {
                   <FormMessage />
                 </FormItem>
               </FormField>
-              <Button variant="link" type="button">Glemt passord?</Button>
+              <RouterLink
+                class="hover:underline"
+                :to="{
+                  name: 'forgot-password',
+                  query: { email: form.values.email },
+                }"
+                >Glemt passord?</RouterLink
+              >
             </div>
             <Button type="submit"> Submit </Button>
           </Form>
