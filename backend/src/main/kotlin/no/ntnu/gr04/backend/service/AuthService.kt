@@ -22,7 +22,7 @@ class AuthService (
     private val logger = LogManager.getLogger()
 
     fun register(request: AuthRegisterRequest): AuthenticatedUser? {
-        if (authRepo.find(request.email) == null) {
+        if (authRepo.find(request.email) != null) {
             return null
         }
 
